@@ -20,6 +20,7 @@ require('db.php');
     </nav>
 
 <h2>Employees</h2>
+<a href = "newEmployee.php">ADD NEW EMPLOYEE</a> 
 <table width="100%" border="1" style="border-collapse:collapse;">
     <thead>
     <tr>
