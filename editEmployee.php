@@ -57,6 +57,8 @@ $contracts = mysqli_fetch_assoc($employee);
     <div>
         <div class="centreContainer">
         <h1>Edit Employee</h1>
+        <?php $url = "id=".$id; ?> 
+        <a href = "Schedule.php?<?=$url?>" class = "green_bg, button">VIEW EMPLOYEE SCHEDULE</a> 
     </div>
         <div class = "centreContainer">
         <form action="SavePerson.php" name="form" method="post">

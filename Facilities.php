@@ -9,34 +9,12 @@ require('db.php');
     <meta charset="utf-8">
     <title>View Records</title>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-        body {
-            background-color: powderblue;
-            color: black;
-
-        }
-
-        h2 {
-            color: darkblue;
-            font-family: courier;
-            font-size: 200%;
-        }
-
-        th {
-            color: blue;
-            font-family: courier;
-            font-size: 100%;
-        }
-
-    </style>
 
 </head>
 
 <body>
 
-    <nav style=" display: block; font-size: 30px; font-family: courier;
-  padding: 11px;
-  background-color: beige;"><a href="Employees.php">Employees</a>
+    <nav><a href="Employees.php">Employees</a>
         <a href="Students.php">Students</a>
         <a href="Facilities.php">Facilities</a>
         <a href="Infections.php">Infections</a>
