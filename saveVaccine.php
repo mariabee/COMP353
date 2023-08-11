@@ -17,7 +17,12 @@ if(isset($_POST['ID']) )
         "; 
         $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 
-        
+        if (isset($_POST['student'])) {
+                header("Location: editStudent.php?id=".$id);     
+        }
+        else if (isset($_POST['employee'])) { 
+                header("Location: editEmployee.php?id=".$id);
+        }
 
 }
 ?> 

@@ -111,6 +111,7 @@ $contracts = mysqli_fetch_assoc($employee);
             <form action = "saveVaccine.php" name="form" method="post">
             <tr> 
                 <input type = "hidden" name="ID" value="<?php echo $id ?>" />
+                <input type = "hidden" name="employee" value="<?php echo $id ?>" />
                 <td><input type="text" name="Type" placeholder="Type" /></td>
                 <td><input type="text" name="Dose" placeholder="Dose" /></td>
                 <td><input type="date" name="Date" placeholder="Date" /></td>
