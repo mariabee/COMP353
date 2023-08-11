@@ -34,7 +34,10 @@ require('db.php');
 
 <body>
 
-    <nav><a href="Employees.php">Employees</a>
+    <nav style=" display: block; font-size: 30px; font-family: courier;
+  padding: 11px;
+  background-color: beige;">
+        <a href="Employees.php">Employees</a>
         <a href="Students.php">Students</a>
         <a href="Facilities.php">Facilities</a>
         <a href="Infections.php">Infections</a>
@@ -44,7 +47,7 @@ require('db.php');
 
     <div class="form">
         <h2>Infections</h2>
-        <table width="100%" border="1" style="border-collapse:collapse;">
+        <table style="border: 1px solid;" width="100%" border="1" style="border-collapse:collapse;">
             <thead>
                 <tr>
                     <th><strong>First Name</strong></th>
