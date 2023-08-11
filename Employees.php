@@ -11,7 +11,7 @@ require('db.php');
 </head>
 <body>
 <div class="form">
-<p><<a href="Employees.php">Employees</a>
+<p><a href="Employees.php">Employees</a>
 <a href="Students.php">Students</a>
 <a href="Facilities.php">Facilities</a>
 <a href="Infections.php">Infections</a>
@@ -46,7 +46,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
         </td>
         </td>
         <td align="center">
-        <a href="delete.php?id=<?php echo $row["ID"]; ?>">Delete</a>
+        <a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>">Delete</a>
         </td>
     </tr>
     <?php } ?>
