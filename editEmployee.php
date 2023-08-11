@@ -4,6 +4,11 @@ require('db.php');
 
 $id=$_REQUEST['id'];
 
+$query = "Select * from gdc353_1.Personnel P WHERE P.ID =".$id.";"; 
+
+$result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
+$person = mysqli_fetch_assoc($result);
+
 $query = "Select * from gdc353_1.Employee E
             JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
             JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
@@ -17,6 +22,20 @@ $query = "Select * from gdc353_1.Employee E
             "; 
 $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 
+$expiry = $phone = $address = $postal = $city = $province = $citizen = $bday = NULL; 
+$row = mysqli_fetch_assoc($result); 
+if ($row) {
+    $expiry = $row['CardExpiry'];
+    $phone = $row['Phone']; 
+    $address = $row['Address'];
+    $postal = $row['PostalCode'];
+    $city = $row['City'];
+    $province = $row['Province'];
+    $citizen = $row['citizenship'];
+    $bday = $row['DateOfBirth']; 
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,26 +44,7 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
     <meta charset="utf-8">
     <title>View Employee</title>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-        body {
-            background-color: powderblue;
-            color: black;
 
-        }
-
-        h2 {
-            color: darkblue;
-            font-family: courier;
-            font-size: 200%;
-        }
-
-        th {
-            color: blue;
-            font-family: courier;
-            font-size: 100%;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -61,31 +61,26 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
         <div class="centreContainer">
         <h1>Edit Employee</h1>
     </div>
-            <?php
-        $status = "";
-        $row = mysqli_fetch_assoc($result); 
-
-?>
-    <div class = "centreContainer">
+        <div class = "centreContainer">
         <form action="SavePerson.php" name="form" method="post">
         <p>
-            Card Number <input name="ID" value="<?php echo $id ?>" />
-            Expiry <input type="date" name="CardExpiry" placeholder="card expiry" required value="<?php echo $row['CardExpiry'];?>" /></p>
+            Card Number <input name="ID" value="<?php echo $id ?>" required/>
+            Expiry <input type="date" name="CardExpiry" placeholder="card expiry" required value="<?php echo $expiry;?>" /></p>
         <p>
-            <input type="text" name="FirstName" placeholder="Enter first name" required value="<?php echo $row['FirstName'];?>" />
-            <input type="text" name="LastName" placeholder="last name" required value="<?php echo $row['LastName'];?>" />
-            <input type="text" name="Email" placeholder="email" required value="<?php echo $row['Email'];?>" />
+            <input type="text" name="FirstName" placeholder="Enter first name" required value="<?php echo $person['FirstName'];?>" />
+            <input type="text" name="LastName" placeholder="last name" required value="<?php echo $person['LastName'];?>" />
+            <input type="text" name="Email" placeholder="email" required value="<?php echo $person['Email'];?>" />
         </p>
-        <p><input type="tel" name="Phone" placeholder="phone number" required value="<?php echo $row['Phone'];?>" />
-            <input type="text" name="Address" placeholder="address" required value="<?php echo $row['Address'];?>" />
-            <input type="text" name="PostalCode" placeholder="postal code" required value="<?php echo $row['PostalCode'];?>" />
+        <p><input type="tel" name="Phone" placeholder="phone number" required value="<?php echo $phone;?>" />
+            <input type="text" name="Address" placeholder="address" required value="<?php echo $address;?>" />
+            <input type="text" name="PostalCode" placeholder="postal code" required value="<?php echo $postal;?>" />
         </p>
-        <p><input type="text" name="City" placeholder="city" required value="<?php echo $row['City'];?>" />
-            <input type="text" name="Province" placeholder="province" required value="<?php echo $row['Province'];?>" />
-            <input type="text" name="citizenship" placeholder="citizenship" required value="<?php echo $row['citizenship'];?>" />
+        <p><input type="text" name="City" placeholder="city" required value="<?php echo $city;?>" />
+            <input type="text" name="Province" placeholder="province" required value="<?php echo $province;?>" />
+            <input type="text" name="citizenship" placeholder="citizenship" required value="<?php echo $citizen;?>" />
         </p>
-            <p>Birth date <input type="date" name="DateOfBirth" placeholder="date of birth" required value="<?php echo $row['DateOfBirth'];?>" /></p>
-            <input class="button purple_bg" name="submit" type="submit" value="Save Changes" />
+        <p>Birth date <input type="date" name="DateOfBirth" placeholder="date of birth" required value="<?php echo $bday;?>" /></p>
+        <input class="button purple_bg" name="submit" type="submit" value="Save Changes" />
         <p><a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>" class="dark_bg">Delete Employee</a></p>
         </form>
     </div> 
@@ -167,6 +162,7 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
     </table> 
     <div class = "centreContainer">
         <h2> Contracts </h2>
+        <?php if(!$row) {echo "<p>*Employee contract details required</p>";} ?>
         <?php  
 while($row) { ?>
         <div>
@@ -188,7 +184,7 @@ while($row) { ?>
 
 
         <form action="SaveContract.php" name="form" method="post">
-            <input name="ID" value="<?php echo $id ?>" />
+            <input name="ID" value="<?php echo $id ?>" readonly/>
             <p><input type="text" name="position" placeholder="Position" /></p>
             <p><input type="date" name="startDate" placeholder="Start date" /></p>
             <p><input type="date" name="endDate" placeholder="End date" /></p>

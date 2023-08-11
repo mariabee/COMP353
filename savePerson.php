@@ -1,21 +1,40 @@
 <?php
 require('db.php'); 
 
-if(isset($_POST['ID']))
+if(isset($_POST['ID']) )
 {       echo "working";
         
         $id=$_REQUEST['ID'];
+        
         $firstname =$_REQUEST['FirstName'];
         $lastname =$_REQUEST['LastName'];
         $email = $_REQUEST['Email'];
-        $phone = $_REQUEST['Phone'];
-        $postalCode = $_REQUEST['PostalCode'];
-        $city = $_REQUEST['City'];
-        $province = $_REQUEST['Province'];
-        $cardExpiry = $_REQUEST['CardExpiry'];
-        $birthday = $_REQUEST['DateOfBirth'];
-        $address = $_REQUEST['Address'];
-        $citizenship = $_REQUEST['citizenship'];   
+        
+        
+        if(isset($_POST['Phone']) ) {
+                $phone = $_REQUEST['Phone'];
+        }
+        if(isset($_POST['PostalCode']) ) {
+                $postalCode = $_REQUEST['PostalCode'];
+        }
+        if(isset($_POST['City']) ) {
+                $city = $_REQUEST['City'];
+        }
+        if(isset($_POST['Province']) ) {
+                $province = $_REQUEST['Province'];
+        }
+        if(isset($_POST['CardExpiry']) ) {
+                $cardExpiry = $_REQUEST['CardExpiry'];
+        }
+        if(isset($_POST['DateOfBirth']) ) {
+                $birthday = $_REQUEST['DateOfBirth'];
+        }
+        if(isset($_POST['Address']) ) {
+                $address = $_REQUEST['Address'];
+        }
+        if(isset($_POST['citizenship']) ) {
+                $citizenship = $_REQUEST['citizenship']; 
+        }
         $isStudent = false; 
         if (isset($_POST['student'])) {
                 $isStudent = true; 

@@ -14,9 +14,7 @@ require('db.php');
 
 <body>
 
-    <nav style=" display: block; font-size: 30px; font-family: courier;
-  padding: 11px;
-  background-color: beige;">
+    <nav>
         <a href="Employees.php">Employees</a>
         <a href="Students.php">Students</a>
         <a href="Facilities.php">Facilities</a>
@@ -26,7 +24,6 @@ require('db.php');
     </nav>
 
 <h2>Employees</h2>
-<a href = "newEmployee.php">ADD NEW EMPLOYEE</a> 
 <table width="100%" border="1" style="border-collapse:collapse;">
     <thead>
     <tr>
@@ -59,6 +56,24 @@ while($row = mysqli_fetch_assoc($result)) { ?>
                 </td>
             </tr>
             <?php } ?>
+            <form action = "newPerson.php" name="form" method="post">
+            <tr>
+                <td align="center">Add new</td> 
+                <td></td> 
+                <td></td> 
+                <td></td>
+                <td align="center">Start Date</td> 
+                <td></td>
+            </tr>
+            <tr> 
+                <td align="center"><input type="text" name="ID" required /></td>
+                <td align="center"><input type="text" name="FirstName" placeholder="First Name" required></input></td> 
+                <td align="center"><input type="text" name="LastName" placeholder="Last Name" required></input></td>
+                <td align="center"><input type="text" name="Email" placeholder="Email"></input></td>
+                <td align="center"><input type="date" name="startDate" placeholder="Start date"></input></td>
+                <td align="center"><input type="submit" class = "purple_bg button"></input></td>
+            </tr>  
+            </form>
         </tbody>
     </table>
     </div>
