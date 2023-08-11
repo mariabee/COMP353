@@ -16,6 +16,10 @@ if(isset($_POST['ID']))
         $birthday = $_REQUEST['DateOfBirth'];
         $address = $_REQUEST['Address'];
         $citizenship = $_REQUEST['citizenship'];   
+        $isStudent = false; 
+        if (isset($_POST['student'])) {
+                $isStudent = true; 
+        }
         
         $query = "
         UPDATE gdc353_1.Personnel
@@ -27,8 +31,12 @@ if(isset($_POST['ID']))
         "; 
         $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
         
-        
-        header("Location: editEmployee.php?id=".$id);
+        if ($isStudent) {
+                header("Location: editStudent.php?id=".$id);     
+        }
+        else { 
+                header("Location: editEmployee.php?id=".$id);
+        }
         exit();
 
 }

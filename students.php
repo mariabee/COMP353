@@ -18,7 +18,7 @@ require('db.php');
 <a href="Vaccines.php">Vaccines</a>
 <a href="Emails.php">Email Log</a>
 </div></p>
-<h2>Employees</h2>
+<h2>Students</h2>
 <table width="100%" border="1" style="border-collapse:collapse;">
     <thead>
     <tr>
