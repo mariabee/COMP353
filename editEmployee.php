@@ -9,31 +9,27 @@ $query = "Select * from gdc353_1.Personnel P WHERE P.ID =".$id.";";
 $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 $person = mysqli_fetch_assoc($result);
 
+$expiry = $person['CardExpiry'];
+$phone = $person['Phone']; 
+$address = $person['Address'];
+$postal = $person['PostalCode'];
+$city = $person['City'];
+$province = $person['Province'];
+$citizen = $person['citizenship'];
+$bday = $person['DateOfBirth']; 
+
 $query = "Select * from gdc353_1.Employee E
-            JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
             JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             UNION 
             Select * from gdc353_1.Employee E
-            JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
-            RIGHT OUTER JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
+            JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             GROUP BY E.startDate; 
             "; 
-$result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
+$employee = mysqli_query($conn, $query) or die ( mysqli_error($conn));
+$contracts = mysqli_fetch_assoc($employee); 
 
-$expiry = $phone = $address = $postal = $city = $province = $citizen = $bday = NULL; 
-$row = mysqli_fetch_assoc($result); 
-if ($row) {
-    $expiry = $row['CardExpiry'];
-    $phone = $row['Phone']; 
-    $address = $row['Address'];
-    $postal = $row['PostalCode'];
-    $city = $row['City'];
-    $province = $row['Province'];
-    $citizen = $row['citizenship'];
-    $bday = $row['DateOfBirth']; 
-}
 
 
 ?>
@@ -81,7 +77,7 @@ if ($row) {
         </p>
         <p>Birth date <input type="date" name="DateOfBirth" placeholder="date of birth" required value="<?php echo $bday;?>" /></p>
         <input class="button purple_bg" name="submit" type="submit" value="Save Changes" />
-        <p><a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>" class="dark_bg">Delete Employee</a></p>
+        <p><a href="DeletePerson.php?id=<?php echo $person["ID"]; ?>" class="dark_bg">Delete Employee</a></p>
         </form>
     </div> 
         <h3>Vaccine History</h3>
@@ -162,23 +158,22 @@ if ($row) {
     </table> 
     <div class = "centreContainer">
         <h2> Contracts </h2>
-        <?php if(!$row) {echo "<p>*Employee contract details required</p>";} ?>
+        <?php if(!$contracts) {echo "<p>*Employee contract details required</p>";} ?>
         <?php  
-while($row) { ?>
+while($contracts) { ?>
         <div>
-            <p>Facility: <?php echo $row['facility'];?></p>
-            <p>Position: <?php echo $row['position'];?></p>
-            <p>Start date :<?php echo $row['startDate'];?></p>
-            <p>End date :<?php echo $row['endDate'];?></p>
-            <button> <a href="delete.php?id=
-        <?php echo $row["PersonID"];?>
+            <p>Facility: <?php echo $contracts['facility'];?></p>
+            <p>Position: <?php echo $contracts['position'];?></p>
+            <p>Start date :<?php echo $contracts['startDate'];?></p>
+            <p>End date :<?php echo $contracts['endDate'];?></p>
+            <a href="delete.php?id=
+        <?php echo $contracts["PersonID"];?>
         &id=
-        <?php echo $row["startDate"];?> 
-    ">Delete</a> </button>
+        <?php echo $contracts["startDate"];?>">Delete</a> 
     <br> 
         </div>
         <?php
-    $row = mysqli_fetch_assoc($result); 
+    $contracts = mysqli_fetch_assoc($employee); 
     
 }?>
 

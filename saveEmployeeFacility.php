@@ -8,11 +8,11 @@ if(isset($_POST['ID']) && isset($_POST['startDate']) && isset($_POST['type']) &&
         $startDate = $_REQUEST['startDate'];
         $facility = $_REQUEST['facility'];
 
-        if ($type = 'Management') {
+        if ($type == 'Management') {
             $insert = "INSERT INTO gdc353_1.isManagementEmployee(PersonID, startDate, facility)
             VALUES (".$id.",'".$startDate."','".$facility."');";
         }
-        else if (isset($type) && $type = 'Educational') {
+        else if (isset($type) && $type == 'Educational') {
             $query = "SELECT name FROM gdc353_1.EducationalFacility E;";
             $insert = "INSERT INTO gdc353_1.isEducationalEmployee(PersonID, startDate, facility)
             VALUES (".$id.",'".$startDate."','".$facility."');";
