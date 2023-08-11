@@ -99,6 +99,7 @@ $contracts = mysqli_fetch_assoc($student);
                 <form action = "saveVaccine.php" name="form" method="post">
                 <tr> 
                     <input type = "hidden" name="ID" value="<?php echo $id ?>" />
+                    <input type = "hidden" name="student" value="<?php echo $id ?>" />
                     <td><input type="text" name="Type" placeholder="Type" /></td>
                     <td><input type="text" name="Dose" placeholder="Dose" /></td>
                     <td><input type="date" name="Date" placeholder="Date" /></td>
@@ -113,7 +114,6 @@ $contracts = mysqli_fetch_assoc($student);
         </table> 
                 
         <h3>Infection History</h3> 
-        <input type = "hidden" name="ID" value="<?php echo $id ?>" />
         <table style="border: 1px solid;" width="50%" border="1" style="border-collapse:collapse;">
                 <thead>
                     <tr>
@@ -138,13 +138,13 @@ $contracts = mysqli_fetch_assoc($student);
             <?php } ?>  
             <form action = "saveInfection.php" name="form" method="post">
             <tr> 
+                <input type = "hidden" name="ID" value="<?php echo $id ?>" />
+                <input type = "hidden" name="student" value="<?php echo $id ?>" />
                 <td><input type="text" name="Type" placeholder="Type" /></td>
                 <td><input type="date" name="Date" placeholder="Date" /></td>
                 <td>  
                     <input type = "submit" class="purple_bg button"></input>
                 </td>
-                    
-
             </tr>  
             </form> 
         </tbody> 
