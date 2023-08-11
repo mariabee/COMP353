@@ -1,3 +1,4 @@
+
 <?php
 require('db.php');
 
@@ -180,10 +181,12 @@ while($contracts) { ?>
 
 
         <form action="SaveContract.php" name="form" method="post">
-            <input name="ID" value="<?php echo $id ?>" readonly/>
-            <p><input type="text" name="position" placeholder="Position" /></p>
-            <p><input type="date" name="startDate" placeholder="Start date" /></p>
-            <p><input type="date" name="endDate" placeholder="End date" /></p>
+            <input name="ID" value="<?php echo $id ?>" readonly/></input> 
+            <p><input required type="text" name="position" placeholder="Position" /></input></p>
+            <p><input required type="date" name="startDate" placeholder="Start date" /></input></p>
+            <p><input type="checkbox" id="current" name="current">
+            <label for="current">Currently employed</label></p> 
+            <p><input type="text" name="endDate"  placeholder="End Date"/></input></p>
             <input type="radio" name="type" <?php if (isset($type) && $type=="Management") echo "checked";?> value="Management">Management
             <input type="radio" name="type" <?php if (isset($level) && $level=="Educational") echo "checked";?> value="Educational">Educational
 
