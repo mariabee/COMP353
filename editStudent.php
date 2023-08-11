@@ -96,8 +96,8 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 
         <form action = "saveEnrollment.php" name="form" method="post">
             <input name="ID" value="<?php echo $id ?>" />
-            <p><input type="text" name="startDate" placeholder="Start date" /></p>
-            <p><input type="text" name="endDate" placeholder="End date" /></p>
+            <p><input type="date" name="startDate" placeholder="Start date" /></p>
+            <p><input type="date" name="endDate" placeholder="End date" /></p>
             <p><input type="text" name="level" placeholder="level" /></p>
             <p><input type="text" name="Facility" placeholder="Facility" /></p>
             <p><input class = "button purple_bg" name="submit" type="submit" value="Submit enrollment details" /></p>

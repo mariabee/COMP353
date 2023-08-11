@@ -43,11 +43,11 @@ while($row = mysqli_fetch_assoc($result)) { ?>
         <td align="center"><?php echo $row["LastName"]; ?></td>
         <td align="center"><?php echo $row["Email"]; ?></td>
         <td align="center">
-        <a href="editEmployee.php?id=<?php echo $row["ID"]; ?>">View/Edit</a>
+        <a href="editEmployee.php?id=<?php echo $row["ID"]; ?>" class = "green_bg">View/Edit</a>
         </td>
         </td>
         <td align="center">
-        <a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>">Delete</a>
+        <a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>" class = "dark_bg">Delete</a>
         </td>
     </tr>
     <?php } ?>

@@ -92,8 +92,8 @@ while($row) { ?>
     <form action = "SaveContract.php" name="form" method="post">
         <input name="ID" value="<?php echo $id ?>" />
         <p><input type="text" name="position" placeholder="Position" /></p>
-        <p><input type="text" name="startDate" placeholder="Start date" /></p>
-        <p><input type="text" name="endDate" placeholder="End date" /></p>
+        <p><input type="date" name="startDate" placeholder="Start date" /></p>
+        <p><input type="date" name="endDate" placeholder="End date" /></p>
         <input type="radio" name="type"
                     <?php if (isset($type) && $type=="Management") echo "checked";?>
                     value="Management">Management
