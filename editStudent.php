@@ -137,6 +137,8 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
                 <td>  
                     <input type = "submit" class="purple_bg button"></input>
                 </td>
+                    
+
             </tr>  
             </form> 
         </tbody> 
