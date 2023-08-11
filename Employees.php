@@ -1,17 +1,23 @@
 <?php 
 require('db.php');
-?> 
+?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>View Records</title>
-<link rel="stylesheet" href="css/style.css" />
+    <meta charset="utf-8">
+    <title>View Records</title>
+    <link rel="stylesheet" href="css/style.css" /> 
+
 </head>
+
 <body>
 
-<nav><a href="Employees.php">Employees</a>
+    <nav style=" display: block; font-size: 30px; font-family: courier;
+  padding: 11px;
+  background-color: beige;">
+        <a href="Employees.php">Employees</a>
         <a href="Students.php">Students</a>
         <a href="Facilities.php">Facilities</a>
         <a href="Infections.php">Infections</a>
@@ -39,21 +45,23 @@ $sel_query="Select * from gdc353_1.Employee E
     ORDER BY lastName, firstName asc;";
 $result = mysqli_query($conn,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
-    <tr><td align="center"><?php echo $row["ID"]; ?></td>
-        <td align="center"><?php echo $row["FirstName"]; ?></td>
-        <td align="center"><?php echo $row["LastName"]; ?></td>
-        <td align="center"><?php echo $row["Email"]; ?></td>
-        <td align="center">
-        <a href="editEmployee.php?id=<?php echo $row["ID"]; ?>" class = "green_bg">View/Edit</a>
-        </td>
-        </td>
-        <td align="center">
-        <a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>" class = "dark_bg">Delete</a>
-        </td>
-    </tr>
-    <?php } ?>
-</tbody>
-</table>
-</div>
+            <tr>
+                <td align="center"><?php echo $row["ID"]; ?></td>
+                <td align="center"><?php echo $row["FirstName"]; ?></td>
+                <td align="center"><?php echo $row["LastName"]; ?></td>
+                <td align="center"><?php echo $row["Email"]; ?></td>
+                <td align="center">
+                    <a href="editEmployee.php?id=<?php echo $row["ID"]; ?>" class="green_bg">View/Edit</a>
+                </td>
+                </td>
+                <td align="center">
+                    <a href="DeletePerson.php?id=<?php echo $row["ID"]; ?>" class="dark_bg">Delete</a>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    </div>
 </body>
+
 </html>
