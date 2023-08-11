@@ -37,7 +37,7 @@ $row = mysqli_fetch_assoc($result);
 <div>
     <form action = "SavePerson.php" name="form" method="post"> 
         <input name="student" value="student" type=hidden />
-        <input name="ID" value="<?php echo $row['ID'] ?>" />
+        <input name="ID" value="<?php echo $id ?>" />
 
         <p><input type="text" name="FirstName" placeholder="Enter first name" 
         required value="<?php echo $row['FirstName'];?>" /></p>
@@ -84,7 +84,7 @@ while($row) { ?>
     
 }?> 
 
-    <form action = "SaveEnrollment.php" name="form" method="post">
+    <form action = "saveEnrollment.php" name="form" method="post">
         <input name="ID" value="<?php echo $id ?>" />
         <p><input type="text" name="startDate" placeholder="Start date" /></p>
         <p><input type="text" name="endDate" placeholder="End date" /></p>
