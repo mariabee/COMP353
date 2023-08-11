@@ -42,30 +42,37 @@ require('db.php');
         <a href="Emails.php">Email Log</a>
     </nav>
 
-    <h2>Employees</h2>
+    <h2>Facilities</h2>
     <table width="100%" border="1" style="border-collapse:collapse;">
         <thead>
             <tr>
-                <th><strong>Card No.</strong></th>
-                <th><strong>First Name</strong></th>
-                <th><strong>Last Name</strong></th>
-                <th><strong>Email</strong></th>
+                <th><strong>Name</strong></th>
+                <th><strong>Address</strong></th>
+                <th><strong>Postal Code</strong></th>
+                <th><strong>City</strong></th>
+                <th><strong>Province</strong></th>
+                <th><strong>Web Address</strong></th>
+                <th><strong>Phone Number</strong></th>
+                <th><strong>Type</strong></th>
+                <th><strong>Capacity</strong></th>
             </tr>
         </thead>
         <tbody>
             <?php
 $count=1; 
-$sel_query="Select * from gdc353_1.Employee E
-    JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
-    GROUP BY PersonID
-    ORDER BY lastName, firstName asc;";
+$sel_query="Select * from gdc353_1.Facility F;";
 $result = mysqli_query($conn,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
             <tr>
-                <td align="center"><?php echo $row["ID"]; ?></td>
-                <td align="center"><?php echo $row["FirstName"]; ?></td>
-                <td align="center"><?php echo $row["LastName"]; ?></td>
-                <td align="center"><?php echo $row["Email"]; ?></td>
+                <td align="center"><?php echo $row["Name"]; ?></td>
+                <td align="center"><?php echo $row["Address"]; ?></td>
+                <td align="center"><?php echo $row["PostalCode"]; ?></td>
+                <td align="center"><?php echo $row["City"]; ?></td>
+                <td align="center"><?php echo $row["Province"]; ?></td>
+                <td align="center"><?php echo $row["WebAddress"]; ?></td>
+                <td align="center"><?php echo $row["phoneNumber"]; ?></td>
+                <td align="center"><?php echo $row["Type"]; ?></td>
+                <td align="center"><?php echo $row["Capacity"]; ?></td>
                 <td align="center">
                     <a href="editEmployee.php?id=<?php echo $row["ID"]; ?>" class="green_bg">View/Edit</a>
                 </td>
