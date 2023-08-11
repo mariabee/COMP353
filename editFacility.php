@@ -2,19 +2,12 @@
 require('db.php');
 
 
-$id=$_REQUEST['id'];
+$Name=$_REQUEST['Name'];
 
-$query = "Select * from gdc353_1.Employee E
-            JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
-            JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
-            WHERE E.PersonID = ".$id."
-            UNION 
-            Select * from gdc353_1.Employee E
-            JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
-            RIGHT OUTER JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
-            WHERE E.PersonID = ".$id."
-            GROUP BY E.startDate; 
-            "; 
+$query = "Select * from gdc353_1.Facilicty F
+            JOIN gdc353_1.EducationalFacility E ON  E.name= F.Name
+            JOIN gdc353_1.ManagementFacility M ON M.name = F.Name
+            WHERE F.Name = ".$Name.";"; 
 $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 
 ?>

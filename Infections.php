@@ -46,22 +46,23 @@ require('db.php');
     </nav>
 
     <div class="form">
-        <h2>Students</h2>
+        <h2>Infections</h2>
         <table style="border: 1px solid;" width="100%" border="1" style="border-collapse:collapse;">
             <thead>
                 <tr>
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Card No.</strong></th>
-                    <th><strong>Email</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Date</strong></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 $count=1; 
-$sel_query="Select * from gdc353_1.Student S
-    JOIN gdc353_1.Personnel P ON P.ID = S.PersonID
-    GROUP BY PersonID
+$sel_query="Select * from gdc353_1.Infection I
+    JOIN gdc353_1.Personnel P ON P.ID = I.PatientID
+    GROUP BY PatientID
     ORDER BY lastName, firstName asc;";
 $result = mysqli_query($conn,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
@@ -69,7 +70,8 @@ while($row = mysqli_fetch_assoc($result)) { ?>
                     <td align="center"><?php echo $row["FirstName"]; ?></td>
                     <td align="center"><?php echo $row["LastName"]; ?></td>
                     <td align="center"><?php echo $row["ID"]; ?></td>
-                    <td align="center"><?php echo $row["Email"]; ?></td>
+                    <td align="center"><?php echo $row["Type"]; ?></td>
+                    <td align="center"><?php echo $row["Date"]; ?></td>
                     <td align="center">
                         <a href="editStudent.php?id=<?php echo $row["ID"]; ?>" class="green_bg">View/Edit</a>
                     </td>
