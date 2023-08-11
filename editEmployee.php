@@ -158,18 +158,19 @@ $contracts = mysqli_fetch_assoc($employee);
     </table> 
     <div class = "centreContainer">
         <h2> Contracts </h2>
-        <?php if(!$contracts) {echo "<p>*Employee contract details required</p>";} ?>
-        <?php  
+        <?php if(!$contracts) {echo "<p style='color: red;'>*Employee is missing contract details</p>";} ?>
+        <?php
 while($contracts) { ?>
         <div>
             <p>Facility: <?php echo $contracts['facility'];?></p>
             <p>Position: <?php echo $contracts['position'];?></p>
             <p>Start date :<?php echo $contracts['startDate'];?></p>
             <p>End date :<?php echo $contracts['endDate'];?></p>
-            <a href="delete.php?id=
-        <?php echo $contracts["PersonID"];?>
-        &id=
-        <?php echo $contracts["startDate"];?>">Delete</a> 
+            <?php
+            $date = $contracts['startDate']; 
+            $url = "id={$id}&startDate={$date}";
+            ?>
+            <a href="deleteContract.php?<?=$url?>">Delete</a> 
     <br> 
         </div>
         <?php
