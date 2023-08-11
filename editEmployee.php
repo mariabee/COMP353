@@ -22,7 +22,7 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 <html>
 <head>
 <meta charset="utf-8">
-<title>View/Edit Employee</title>
+<title>View Employee</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -75,11 +75,11 @@ while($row) { ?>
         <p>Position: <?php echo $row['position'];?></p> 
         <p>Start date :<?php echo $row['startDate'];?></p>
         <p>End date :<?php echo $row['endDate'];?></p>
-    <a href="delete.php?id=
+    <button> <a href="delete.php?id=
         <?php echo $row["PersonID"];?>
         &id=
         <?php echo $row["startDate"];?> 
-    ">Delete</a>
+    ">Delete</a> </button>
     </div>  
     <br> 
     <?php
