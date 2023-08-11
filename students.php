@@ -10,14 +10,16 @@ require('db.php');
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+<nav><a href="Employees.php">Employees</a>
+        <a href="Students.php">Students</a>
+        <a href="Facilities.php">Facilities</a>
+        <a href="Infections.php">Infections</a>
+        <a href="Vaccines.php">Vaccines</a>
+        <a href="Emails.php">Email Log</a>
+    </nav>
+
 <div class="form">
-<p><a href="Employees.php">Employees</a>
-<a href="Students.php">Students</a>
-<a href="Facilities.php">Facilities</a>
-<a href="Infections.php">Infections</a>
-<a href="Vaccines.php">Vaccines</a>
-<a href="Emails.php">Email Log</a>
-</div></p>
 <h2>Students</h2>
 <table width="100%" border="1" style="border-collapse:collapse;">
     <thead>

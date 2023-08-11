@@ -27,13 +27,14 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 </head>
 <body>
 <div class="form">
-<p><p><a href="Employees.php">Employees</a>
-    <a href="Students.php">Students</a>
-    <a href="Facilities.php">Facilities</a>
-    <a href="Infections.php">Infections</a>
-    <a href="Vaccines.php">Vaccines</a>
-    <a href="Emails.php">Email Log</a>
-</div></p>
+<nav><a href="Employees.php">Employees</a>
+        <a href="Students.php">Students</a>
+        <a href="Facilities.php">Facilities</a>
+        <a href="Infections.php">Infections</a>
+        <a href="Vaccines.php">Vaccines</a>
+        <a href="Emails.php">Email Log</a>
+    </nav>
+</div>
 <h1>Edit Employee</h1>
 <?php
 $status = "";

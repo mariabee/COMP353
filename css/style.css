@@ -1,0 +1,48 @@
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 15px;
+}
+p {
+    line-height: 5px;   /* within paragraph */
+    margin-bottom: 15px; /* between paragraphs */
+    }
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.button {
+    background-color: #207352;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block
+}
+
+a:link, a:visited {
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav {
+    background-color: rgb(96, 205, 103);
+}
+      
+a:hover, a:active, .button:hover {
+    background-color: rgb(22, 121, 28);
+}
+
+.green_bg {
+    background-color: #207352
+}
+.purple_bg {
+    background-color: #606ee8
+}
+.dark_bg {
+    background-color: #322d39; 
+   ;
+}
