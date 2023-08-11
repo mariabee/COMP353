@@ -1,5 +1,32 @@
 <?php
 require('db.php');
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>View Records</title>
+    <link rel="stylesheet" href="css/style.css" /> 
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="Employees.php">Employees</a>
+        <a href="Students.php">Students</a>
+        <a href="Facilities.php">Facilities</a>
+        <a href="Infections.php">Infections</a>
+        <a href="Vaccines.php">Vaccines</a>
+        <a href="Emails.php">Email Log</a>
+    </nav>
+
+
+
+<?php
+
 
 $today = new DateTime('now', new DateTimeZone('US/Eastern')); 
 $today = new DateTime('2023-08-13', new DateTimeZone('US/Eastern')); 
@@ -26,11 +53,11 @@ function SundayEmail($today, $conn) {
     $sender = NULL;
     $receiver = NULL;
 
-    $employees = mysqli_query($conn, $sql);
-    if (!$employees) {
-        echo ("Could not select data : " . mysqli_error($conn) . " ");
-    }
+    $employees = mysqli_query($conn, $sql) or die ( mysqli_error($conn));
+    
+     
     while($row = mysqli_fetch_assoc($employees)){
+        
        
         $firstName = $row["FirstName"];
         $lastName = $row["LastName"];
@@ -44,13 +71,13 @@ function SundayEmail($today, $conn) {
                 JOIN gdc353_1.Facility F ON S.Facility = F.name
                 WHERE PersonID = ".$receiver." AND date BETWEEN '".$nextmonday."' AND '".$nextsunday."' 
                 ORDER BY F.name, date, startTime ASC;";
-        $week = mysqli_query($conn, $sql); 
-        if (!$week) {
-            echo ("Could not select data : " . mysqli_error($conn) . " ");
-        }
+        $week = mysqli_query($conn, $sql) or die ( mysqli_error($conn)); 
+        
         $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = $sunday = "No assignment"; 
         $pastsender = null; 
+        $count = 0; 
         while($day = mysqli_fetch_assoc($week)) {
+            $count++; 
 
             $sender = $day["name"];
 
@@ -150,7 +177,7 @@ function SundayEmail($today, $conn) {
                 }
             $pastsender = $sender; 
         }
-        if ($pastsender ) {
+        if ($pastsender) {
             $body.= "Monday: ".$monday."<br>
                     Tuesday: ".$tuesday."<br>
                     Wednesday: ".$wednesday."<br>
@@ -169,6 +196,9 @@ function SundayEmail($today, $conn) {
             echo "<br>Email sent to :".$firstName." ".$lastName."<br>
                 Subject : ".$subject."<br>
                 Body : ".$body."<br>"; 
+        }
+        if ($count == 0) {
+            echo "<p> There are no employees scheduled for this upcoming week.";
         }
     }
     $conn->close(); 
