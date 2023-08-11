@@ -26,7 +26,8 @@ if(isset($_POST['ID']))
         WHERE ID =".$id.";
         "; 
         $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
-
+        
+        
         header("Location: editEmployee.php?id=".$id);
         exit();
 

@@ -1,6 +1,9 @@
 <?php
 require('db.php');
+
+
 $id=$_REQUEST['id'];
+
 $query = "Select * from gdc353_1.Employee E
             JOIN gdc353_1.Personnel P ON P.ID = E.PersonID
             JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
@@ -12,7 +15,7 @@ $query = "Select * from gdc353_1.Employee E
             WHERE E.PersonID = ".$id."
             GROUP BY E.startDate; 
             "; 
-$result = mysqli_query($conn, $query) or die ( mysqli_error($con));
+$result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +27,7 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($con));
 </head>
 <body>
 <div class="form">
-<p><p><<a href="Employees.php">Employees</a>
+<p><p><a href="Employees.php">Employees</a>
     <a href="Students.php">Students</a>
     <a href="Facilities.php">Facilities</a>
     <a href="Infections.php">Infections</a>
@@ -35,9 +38,6 @@ $result = mysqli_query($conn, $query) or die ( mysqli_error($con));
 <?php
 $status = "";
 $row = mysqli_fetch_assoc($result); 
- 
-
-'</p>';
 
 ?>
 <div>
@@ -49,7 +49,7 @@ $row = mysqli_fetch_assoc($result);
         required value="<?php echo $row['LastName'];?>" /></p>
         <p><input type="text" name="Email" placeholder="email" 
         required value="<?php echo $row['Email'];?>" /></p>
-        <p><input type="text" name="Phone" placeholder="phone number" 
+        <p><input type="tel" name="Phone" placeholder="phone number" 
         required value="<?php echo $row['Phone'];?>" /></p>
         <p><input type="text" name="Address" placeholder="address" 
         required value="<?php echo $row['Address'];?>" /></p>
@@ -59,9 +59,9 @@ $row = mysqli_fetch_assoc($result);
         required value="<?php echo $row['City'];?>" /></p>
         <p><input type="text" name="Province" placeholder="province" 
         required value="<?php echo $row['Province'];?>" /></p>
-        <p><input type="text" name="CardExpiry" placeholder="card expiry" 
+        <p><input type="date" name="CardExpiry" placeholder="card expiry" 
         required value="<?php echo $row['CardExpiry'];?>" /></p>
-        <p><input type="text" name="DateOfBirth" placeholder="date of birth" 
+        <p><input type="date" name="DateOfBirth" placeholder="date of birth" 
         required value="<?php echo $row['DateOfBirth'];?>" /></p>
         <p><input type="text" name="citizenship" placeholder="citizenship" 
         required value="<?php echo $row['citizenship'];?>" /></p>
@@ -84,12 +84,22 @@ while($row) { ?>
     <br> 
     <?php
     $row = mysqli_fetch_assoc($result); 
+    
 }?> 
+
+
     <form action = "SaveContract.php" name="form" method="post">
-        <p><input type="text" name="facility" placeholder="Facility" /></p>
+        <input name="ID" value="<?php echo $id ?>" />
         <p><input type="text" name="position" placeholder="Position" /></p>
         <p><input type="text" name="startDate" placeholder="Start date" /></p>
         <p><input type="text" name="endDate" placeholder="End date" /></p>
+        <input type="radio" name="type"
+                    <?php if (isset($type) && $type=="Management") echo "checked";?>
+                    value="Management">Management
+        <input type="radio" name="type"
+                    <?php if (isset($level) && $level=="Educational") echo "checked";?>
+                    value="Educational">Educational
+        
         <p><input name="submit" type="submit" value="Submit new contract" /></p>
     </form> 
 
