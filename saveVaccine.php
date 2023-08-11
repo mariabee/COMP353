@@ -1,0 +1,23 @@
+<?php
+require('db.php'); 
+
+if(isset($_POST['ID']) )
+{       echo "working";
+        
+        $id=$_REQUEST['ID'];
+        
+        $type =$_REQUEST['Type'];
+        $dose =$_REQUEST['Dose'];
+        $date = $_REQUEST['Date'];
+
+        
+        $query = "
+        INSERT INTO gdc353_1.Vaccine (PatientID, type, dose, date)
+        VALUES ('".$id."','".$type."', '".$dose."','".$date."');
+        "; 
+        $result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
+
+        
+
+}
+?> 

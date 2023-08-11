@@ -148,7 +148,7 @@ $contracts = mysqli_fetch_assoc($employee);
             </td>
         </tr>
         <?php } ?>  
-        <form action = "saveInfection.php" name="form" method="post">
+        <form action = "addInfection.php" name="form" method="post">
         <tr> 
             <td><input type="text" name="Type" placeholder="Type" /></td>
             <td><input type="date" name="Date" placeholder="Date" /></td>
