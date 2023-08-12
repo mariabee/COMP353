@@ -20,11 +20,11 @@ $citizen = $person['citizenship'];
 $bday = $person['DateOfBirth']; 
 
 $query = "Select E.PersonID, E.startDate, E.endDate, E.position, M.facility from gdc353_1.Employee E
-            LEFT JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
+            JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             UNION 
         Select E.PersonID, E.startDate, E.endDate, E.position, Ed.facility from gdc353_1.Employee E
-            LEFT JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
+            JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             GROUP BY E.startDate; 
             "; 
