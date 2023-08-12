@@ -14,6 +14,7 @@ require('db.php');
 
 <body>
 
+
     <nav>
         <a href="Employees.php">Employees</a>
         <a href="Students.php">Students</a>

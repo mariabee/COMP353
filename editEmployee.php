@@ -1,3 +1,4 @@
+
 <?php
 require('db.php');
 
@@ -18,11 +19,12 @@ $province = $person['Province'];
 $citizen = $person['citizenship'];
 $bday = $person['DateOfBirth']; 
 
-$query = "Select * from gdc353_1.Employee E
+
+$query = "Select E.PersonID, E.startDate, E.endDate, E.position, M.facility from gdc353_1.Employee E
             JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             UNION 
-            Select * from gdc353_1.Employee E
+        Select E.PersonID, E.startDate, E.endDate, E.position, Ed.facility from gdc353_1.Employee E
             JOIN gdc353_1.isEducationalEmployee Ed ON Ed.PersonID = E.PersonID AND Ed.startDate = E.startDate
             WHERE E.PersonID = ".$id."
             GROUP BY E.startDate; 
@@ -56,6 +58,9 @@ $contracts = mysqli_fetch_assoc($employee);
     <div>
         <div class="centreContainer">
         <h1>Edit Employee</h1>
+        <?php $url = "id=".$id; ?> 
+        <a href = "Schedule.php?<?=$url?>" class = "green_bg, button">VIEW EMPLOYEE SCHEDULE</a> 
+
     </div>
         <div class = "centreContainer">
         <form action="SavePerson.php" name="form" method="post">
@@ -108,6 +113,7 @@ $contracts = mysqli_fetch_assoc($employee);
             <form action = "saveVaccine.php" name="form" method="post">
             <tr> 
                 <input type = "hidden" name="ID" value="<?php echo $id ?>" />
+                <input type = "hidden" name="employee" value="<?php echo $id ?>" />
                 <td><input type="text" name="Type" placeholder="Type" /></td>
                 <td><input type="text" name="Dose" placeholder="Dose" /></td>
                 <td><input type="date" name="Date" placeholder="Date" /></td>
@@ -122,7 +128,6 @@ $contracts = mysqli_fetch_assoc($employee);
     </table> 
             
     <h3>Infection History</h3> 
-    <input type = "hidden" name="ID" value="<?php echo $id ?>" />
     <table style="border: 1px solid;" width="50%" border="1" style="border-collapse:collapse;">
             <thead>
                 <tr>
@@ -147,6 +152,8 @@ $contracts = mysqli_fetch_assoc($employee);
         <?php } ?>  
         <form action = "saveInfection.php" name="form" method="post">
         <tr> 
+            <input type = "hidden" name="ID" value="<?php echo $id ?>" />
+            <input type = "hidden" name="employee" value="<?php echo $id ?>" />
             <td><input type="text" name="Type" placeholder="Type" /></td>
             <td><input type="date" name="Date" placeholder="Date" /></td>
             <td>  
@@ -180,10 +187,12 @@ while($contracts) { ?>
 
 
         <form action="SaveContract.php" name="form" method="post">
-            <input name="ID" value="<?php echo $id ?>" readonly/>
-            <p><input type="text" name="position" placeholder="Position" /></p>
-            <p><input type="date" name="startDate" placeholder="Start date" /></p>
-            <p><input type="date" name="endDate" placeholder="End date" /></p>
+            <input name="ID" value="<?php echo $id ?>" readonly/></input> 
+            <p><input required type="text" name="position" placeholder="Position" /></input></p>
+            <p><input required type="date" name="startDate" placeholder="Start date" /></input></p>
+            <p><input type="checkbox" id="current" name="current">
+            <label for="current">Currently employed</label></p> 
+            <p><input type="text" name="endDate"  placeholder="End Date"/></input></p>
             <input type="radio" name="type" <?php if (isset($type) && $type=="Management") echo "checked";?> value="Management">Management
             <input type="radio" name="type" <?php if (isset($level) && $level=="Educational") echo "checked";?> value="Educational">Educational
 

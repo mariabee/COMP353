@@ -1,16 +1,40 @@
 <?php
 require('db.php'); 
 
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>View Employee</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+
+<?php 
+
 if(isset($_POST['ID']) && isset($_POST['type']) && isset($_POST['startDate']))
 {      
         $id = $_REQUEST['ID'];
         $startDate =$_REQUEST['startDate'];
-        $endDate = $_REQUEST['endDate'];
         $position=$_REQUEST['position'];
         $type = $_REQUEST['type'];
+        $insertEmployee = ""; 
 
-        $insertEmployee = "INSERT INTO gdc353_1.Employee (PersonID, startDate, endDate, position)
+        if (isset($_POST['current'])){
+            $insertEmployee = "INSERT INTO gdc353_1.Employee (PersonID, startDate, position)
+            VALUES (".$id.", '".$startDate."','".$position."')";  
+        }
+        else {  
+            $endDate = $_REQUEST['endDate'];
+            $insertEmployee = "INSERT INTO gdc353_1.Employee (PersonID, startDate, endDate, position)
                         VALUES (".$id.", '".$startDate."', '".$endDate."', '".$position."')"; 
+        }
+
         $result = mysqli_query($conn, $insertEmployee) or die ( mysqli_error($conn));
         
         if ($type == 'Management') { 
@@ -71,3 +95,5 @@ else {
     exit("Missing information");
 }
 ?> 
+</body> 
+</html> 

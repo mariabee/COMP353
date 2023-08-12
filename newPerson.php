@@ -16,6 +16,7 @@ if(isset($_POST['ID']) )
         if (isset($_POST['student'])) {
                 $isStudent = true; 
         }
+
         
         $query = "
         INSERT INTO gdc353_1.Personnel (FirstName, lastName, Email, ID)
@@ -30,6 +31,16 @@ if(isset($_POST['ID']) )
             VALUES ('".$id."','".$startDate."');
             "; 
             $result = mysqli_query($conn, $query) or die ( mysqli_error($conn)); 
+        }
+
+        if((isset($_POST['enrollDate']))) {
+                $isStudent = true; 
+                $startDate = $_REQUEST['enrollDate'];
+                $query = "
+                INSERT INTO gdc353_1.Student (PersonID, startDate, Level)
+                VALUES ('".$id."','".$startDate."', 'unknown');
+                "; 
+                $result = mysqli_query($conn, $query) or die ( mysqli_error($conn)); 
         }
 
         
