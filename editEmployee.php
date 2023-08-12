@@ -19,6 +19,7 @@ $province = $person['Province'];
 $citizen = $person['citizenship'];
 $bday = $person['DateOfBirth']; 
 
+
 $query = "Select E.PersonID, E.startDate, E.endDate, E.position, M.facility from gdc353_1.Employee E
             JOIN gdc353_1.isManagementEmployee M ON M.PersonID = E.PersonID AND M.startDate = E.startDate
             WHERE E.PersonID = ".$id."
@@ -59,6 +60,7 @@ $contracts = mysqli_fetch_assoc($employee);
         <h1>Edit Employee</h1>
         <?php $url = "id=".$id; ?> 
         <a href = "Schedule.php?<?=$url?>" class = "green_bg, button">VIEW EMPLOYEE SCHEDULE</a> 
+
     </div>
         <div class = "centreContainer">
         <form action="SavePerson.php" name="form" method="post">
@@ -126,7 +128,6 @@ $contracts = mysqli_fetch_assoc($employee);
     </table> 
             
     <h3>Infection History</h3> 
-    
     <table style="border: 1px solid;" width="50%" border="1" style="border-collapse:collapse;">
             <thead>
                 <tr>

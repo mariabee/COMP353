@@ -27,6 +27,13 @@ h1 {
 nav {
     background-color: rgb(96, 205, 103);
     color: white;
+    display: block;
+    font-size: 30px;
+    font-family: courier;
+    padding: 11px;
+    background-color: beige;
+    "
+
 }
 
 a:link,

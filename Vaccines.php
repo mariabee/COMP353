@@ -30,6 +30,7 @@ require('db.php');
                     <th><strong>First Name</strong></th>
                     <th><strong>Last Name</strong></th>
                     <th><strong>Card No.</strong></th>
+                    <th><strong>Email</strong></th>
                     <th><strong>Dose</strong></th>
                     <th><strong>Date</strong></th>
                 </tr>
@@ -51,7 +52,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
                     <td align="center"><?php echo $row["Dose"]; ?></td>
                     <td align="center"><?php echo $row["Date"]; ?></td>
                     <td align="center">
-                        <a href="editStudent.php?id=<?php echo $row["ID"]; ?>" class="green_bg">View/Edit</a>
+                        <a href="editVaccine.php?id=<?php echo $row["ID"]; ?>" class="green_bg">View/Edit</a>
                     </td>
                     </td>
                     <td align="center">
